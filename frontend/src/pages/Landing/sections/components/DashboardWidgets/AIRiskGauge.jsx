@@ -1,10 +1,4 @@
-import {
-  ShieldAlert,
-  Brain,
-  Lock,
-  Bell,
-  KeyRound,
-} from "lucide-react";
+import { ShieldAlert, Brain, Lock, Bell, KeyRound } from "lucide-react";
 
 const recommendations = [
   "Require Multi-Factor Authentication",
@@ -81,7 +75,9 @@ function AIRiskGauge() {
       <div className="my-6 h-px bg-slate-800" />
 
       <div>
-        <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-400">Recommended Actions</h4>
+        <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-400">
+          Recommended Actions
+        </h4>
 
         <div className="space-y-3">
           <div className="flex items-center gap-3">
@@ -91,7 +87,9 @@ function AIRiskGauge() {
 
           <div className="flex items-center gap-3">
             <Lock size={16} className="text-yellow-400" />
-            <span className="text-sm text-slate-300">Lock Suspicious Session</span>
+            <span className="text-sm text-slate-300">
+              Lock Suspicious Session
+            </span>
           </div>
 
           <div className="flex items-center gap-3">

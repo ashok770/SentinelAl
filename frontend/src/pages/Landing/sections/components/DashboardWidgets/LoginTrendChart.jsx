@@ -1,31 +1,66 @@
-import { TrendingUp } from "lucide-react";
+import React, { useState, useEffect } from "react";
 
-const data = [22, 35, 30, 50, 42, 60, 80];
+const loginData = [
+  { day: "M", value: 28 },
+  { day: "T", value: 46 },
+  { day: "W", value: 39 },
+  { day: "T", value: 64 },
+  { day: "F", value: 52 },
+  { day: "S", value: 74 },
+  { day: "S", value: 92 },
+];
 
 function LoginTrendChart() {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 50);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <div className="h-full rounded-3xl border border-slate-800 bg-[#0A1022] p-6">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex justify-between items-start">
         <div>
-          <h3 className="text-xl font-semibold text-white">Login Trend</h3>
+          <h3 className="text-white font-semibold text-xl">Login Trend</h3>
 
-          <p className="text-slate-400 text-sm">Last 7 Days</p>
+          <p className="text-slate-400 text-sm">142 Login Events Today</p>
         </div>
 
-        <TrendingUp className="text-green-400" />
+        <div className="text-right">
+          <div className="text-emerald-400 font-semibold">+18%</div>
+          <p className="text-slate-500 text-xs">vs last week</p>
+        </div>
       </div>
 
-      <div className="flex items-end justify-between h-48">
-        {data.map((item, index) => (
-          <div key={index} className="flex flex-col items-center">
-            <div
-              className="w-8 rounded-full bg-gradient-to-t from-blue-600 to-cyan-400 transition-all duration-500 hover:scale-110"
-              style={{
-                height: `${item * 1.6}px`,
-              }}
-            />
+      <div className="mt-8 flex">
+        <div className="flex flex-col justify-between text-xs text-slate-500 mr-3">
+          <span>120</span>
+          <span>80</span>
+          <span>40</span>
+          <span>0</span>
+        </div>
+
+        <div className="flex-1 flex flex-col">
+          <div className="flex justify-between items-end h-56 border-b border-slate-700 pb-2">
+            {loginData.map((item, idx) => (
+              <div key={idx} className="flex flex-col items-center">
+                <div
+                  className="w-6 rounded-full bg-gradient-to-t from-blue-600 to-cyan-400 transition-all duration-1000"
+                  style={{
+                    height: loaded ? `${item.value * 1.8}px` : "0px",
+                  }}
+                ></div>
+              </div>
+            ))}
           </div>
-        ))}
+
+          <div className="flex justify-between mt-3 text-xs text-slate-500">
+            {loginData.map((item, idx) => (
+              <span key={idx}>{item.day}</span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
