@@ -2,6 +2,7 @@ import DashboardHeader from "./components/DashboardHeader";
 import DashboardStatus from "./components/DashboardStatus";
 import ThreatCards from "./components/ThreatCards";
 import AlertFeed from "./components/AlertFeed";
+// import AIRiskGauge from "./components/AIRiskGauge";
 
 function DashboardPreview() {
   return (
@@ -12,6 +13,7 @@ function DashboardPreview() {
         <DashboardStatus />
         <ThreatCards />
         <AlertFeed />
+        {/* <AIRiskGauge /> */}
       </div>
     </div>
   );
