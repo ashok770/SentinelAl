@@ -1,12 +1,14 @@
 import { AlertTriangle, ShieldAlert, ShieldCheck, Monitor } from "lucide-react";
 import DashboardHeader from "./components/DashboardHeader";
 import DashboardStatus from "./components/DashboardStatus";
+import ThreatCards from "./components/ThreatCards";
 
 function DashboardPreview() {
   return (
     <div className="w-72 rounded-3xl border border-slate-700/50 bg-slate-900/80 p-5 backdrop-blur-xl shadow-2xl">
       <DashboardHeader />
       <DashboardStatus />
+      <ThreatCards />
 
       <div className="space-y-3">
         <div className="rounded-xl border border-red-500/20 bg-red-500/10 p-3">
