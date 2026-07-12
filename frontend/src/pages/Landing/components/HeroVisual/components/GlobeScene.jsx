@@ -5,6 +5,7 @@ import OrbitRing from "./OrbitRing";
 import NetworkNodes from "./NetworkNodes";
 import NetworkLinks from "./NetworkLinks";
 import DataPackets from "./DataPackets";
+import RadarPulse from "./RadarPulse";
 
 function GlobeScene() {
   const globeRef = useRef();
@@ -27,22 +28,22 @@ function GlobeScene() {
         <sphereGeometry args={[1.8, 64, 64]} />
 
         <meshStandardMaterial
-          color="#5EA2FF"
-          emissive="#2563EB"
-          emissiveIntensity={1.1}
-          roughness={0.35}
-          metalness={0.15}
+          color="#2F6FAF"
+          emissive="#06283D"
+          emissiveIntensity={0.22}
+          roughness={0.72}
+          metalness={0.03}
         />
       </mesh>
 
       <mesh>
-        <sphereGeometry args={[1.82, 64, 64]} />
+        <sphereGeometry args={[1.82, 48, 48]} />
 
         <meshBasicMaterial
           color="#7dd3fc"
           wireframe
           transparent
-          opacity={0.08}
+          opacity={0.06}
         />
       </mesh>
 
@@ -53,14 +54,15 @@ function GlobeScene() {
         <meshStandardMaterial
           color="#60A5FA"
           transparent
-          opacity={0.08}
-          emissive="#3b82f6"
-          emissiveIntensity={2}
+          opacity={0.06}
+          emissive="#2563EB"
+          emissiveIntensity={0.9}
           side={THREE.BackSide}
         />
       </mesh>
 
       <OrbitRing />
+      <RadarPulse />
       <NetworkNodes />
       <NetworkLinks />
       <DataPackets />
