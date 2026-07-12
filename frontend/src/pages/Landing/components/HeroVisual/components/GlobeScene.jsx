@@ -4,6 +4,7 @@ import * as THREE from "three";
 import OrbitRing from "./OrbitRing";
 import NetworkNodes from "./NetworkNodes";
 import NetworkLinks from "./NetworkLinks";
+import DataPackets from "./DataPackets";
 
 function GlobeScene() {
   const globeRef = useRef();
@@ -62,6 +63,7 @@ function GlobeScene() {
       <OrbitRing />
       <NetworkNodes />
       <NetworkLinks />
+      <DataPackets />
     </>
   );
 }
