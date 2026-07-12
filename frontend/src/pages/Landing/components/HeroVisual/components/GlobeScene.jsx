@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import OrbitRing from "./OrbitRing";
 
 function GlobeScene() {
   const globeRef = useRef();
@@ -38,7 +39,7 @@ function GlobeScene() {
           color="#7dd3fc"
           wireframe
           transparent
-          opacity={0.18}
+          opacity={0.08}
         />
       </mesh>
 
@@ -55,6 +56,8 @@ function GlobeScene() {
           side={THREE.BackSide}
         />
       </mesh>
+
+      <OrbitRing />
     </>
   );
 }
