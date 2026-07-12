@@ -1,4 +1,8 @@
 import React from "react";
+import AIInsights from "./components/DashboardWidgets/AIInsights";
+import AIRiskGauge from "./components/DashboardWidgets/AIRiskGauge";
+import LoginTrendChart from "./components/DashboardWidgets/LoginTrendChart";
+import UserHeatmap from "./components/DashboardWidgets/UserHeatmap";
 
 const DashboardShowcase = () => {
   return (
@@ -24,7 +28,23 @@ const DashboardShowcase = () => {
         {/* Dashboard Container */}
 
         <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-[0_0_80px_rgba(0,255,255,0.08)]">
-          Dashboard goes here
+          <div className="grid grid-cols-12 gap-6">
+            <div className="col-span-7">
+              <LoginTrendChart />
+            </div>
+
+            <div className="col-span-5">
+              <AIRiskGauge />
+            </div>
+
+            <div className="col-span-8">
+              <UserHeatmap />
+            </div>
+
+            <div className="col-span-4">
+              <AIInsights />
+            </div>
+          </div>
         </div>
       </div>
     </section>
