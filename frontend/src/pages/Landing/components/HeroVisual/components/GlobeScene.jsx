@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
 function GlobeScene() {
   const globeRef = useRef();
@@ -16,8 +17,8 @@ function GlobeScene() {
   });
 
   return (
-    <group>
-      {/* Earth */}
+    <>
+      {/* Main Globe */}
       <mesh ref={globeRef}>
         <sphereGeometry args={[1.8, 64, 64]} />
 
@@ -30,18 +31,31 @@ function GlobeScene() {
         />
       </mesh>
 
-      {/* Atmosphere */}
-      <mesh ref={atmosphereRef} scale={1.08}>
-        <sphereGeometry args={[1.8, 64, 64]} />
+      <mesh>
+        <sphereGeometry args={[1.82, 64, 64]} />
 
         <meshBasicMaterial
-          color="#60A5FA"
+          color="#7dd3fc"
+          wireframe
           transparent
-          opacity={0.12}
-          side={2}
+          opacity={0.18}
         />
       </mesh>
-    </group>
+
+      {/* Atmosphere */}
+      <mesh ref={atmosphereRef}>
+        <sphereGeometry args={[1.9, 64, 64]} />
+
+        <meshStandardMaterial
+          color="#60A5FA"
+          transparent
+          opacity={0.08}
+          emissive="#3b82f6"
+          emissiveIntensity={2}
+          side={THREE.BackSide}
+        />
+      </mesh>
+    </>
   );
 }
 

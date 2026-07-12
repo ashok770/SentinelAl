@@ -1,4 +1,5 @@
 import { Canvas } from "@react-three/fiber";
+import { Stars } from "@react-three/drei";
 
 import GlobeScene from "./components/GlobeScene";
 import GlobeLights from "./components/GlobeLights";
@@ -13,6 +14,15 @@ function AnimatedGlobe() {
         }}
       >
         <GlobeLights />
+        <Stars
+          radius={80}
+          depth={40}
+          count={4000}
+          factor={4}
+          saturation={0}
+          fade
+          speed={0.4}
+        />
 
         <GlobeScene />
       </Canvas>
