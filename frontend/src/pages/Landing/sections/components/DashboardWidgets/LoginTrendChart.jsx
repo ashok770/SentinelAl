@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { TrendingUp } from "lucide-react";
 
+const MAX = 120;
+
 const loginData = [
   { day: "M", value: 28 },
   { day: "T", value: 46 },
@@ -38,29 +40,35 @@ function LoginTrendChart() {
         </div>
       </div>
 
-      <div className="mt-4 flex">
+      <div className="mt-6 flex">
         <div className="flex flex-col justify-between text-xs text-slate-500 mr-3">
-          <span>120</span>
-          <span>80</span>
-          <span>40</span>
+          <span>150</span>
+          <span>100</span>
+          <span>50</span>
           <span>0</span>
         </div>
 
         <div className="flex-1 flex flex-col">
-          <div className="flex justify-evenly items-end h-48 border-b border-slate-600/70 pb-2">
+          <div className="flex items-end justify-around h-44 border-b border-slate-600/70 pb-2">
             {loginData.map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center">
+              <div key={idx} className="group relative flex flex-col items-center">
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 hidden group-hover:flex flex-col items-center z-10">
+                  <div className="bg-slate-800 border border-slate-700 rounded-lg px-2 py-1 text-center whitespace-nowrap">
+                    <p className="text-slate-300 text-xs">{item.day}</p>
+                    <p className="text-white text-xs font-semibold">{item.value} Logins</p>
+                  </div>
+                </div>
                 <div
-                  className="w-5 rounded-full bg-gradient-to-t from-blue-600 to-cyan-400 transition-all duration-1000"
+                  className="w-7 rounded-full bg-gradient-to-t from-blue-600 to-cyan-400 transition-all duration-1000 hover:brightness-110 hover:shadow-lg"
                   style={{
-                    height: loaded ? `${item.value * 1.8}px` : "0px",
+                    height: loaded ? `${(item.value / MAX) * 170}px` : "0px",
                   }}
                 ></div>
               </div>
             ))}
           </div>
 
-          <div className="flex justify-evenly mt-3 text-xs text-slate-500">
+          <div className="flex justify-around mt-3 text-xs text-slate-500">
             {loginData.map((item, idx) => (
               <span key={idx}>{item.day}</span>
             ))}
