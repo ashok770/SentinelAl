@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import OrbitRing from "./OrbitRing";
+import NetworkNodes from "./NetworkNodes";
+import NetworkLinks from "./NetworkLinks";
 
 function GlobeScene() {
   const globeRef = useRef();
@@ -58,6 +60,8 @@ function GlobeScene() {
       </mesh>
 
       <OrbitRing />
+      <NetworkNodes />
+      <NetworkLinks />
     </>
   );
 }
