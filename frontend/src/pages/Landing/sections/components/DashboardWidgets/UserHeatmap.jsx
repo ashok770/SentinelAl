@@ -1,4 +1,10 @@
-const users = Array.from({ length: 24 });
+import { dashboardData } from "../../../data/dashboardData";
+
+const colorMap = {
+  blue: "bg-cyan-500",
+  yellow: "bg-yellow-500",
+  red: "bg-red-500",
+};
 
 function UserHeatmap() {
   return (
@@ -8,20 +14,10 @@ function UserHeatmap() {
       </h3>
 
       <div className="grid grid-cols-6 gap-3">
-        {users.map((_, index) => (
+        {dashboardData.heatmap.flat().map((cell, index) => (
           <div
             key={index}
-            className={`h-10 rounded-lg transition-all duration-300 hover:scale-110
-
-            ${
-              Math.random() > 0.75
-                ? "bg-red-500"
-                : Math.random() > 0.5
-                  ? "bg-yellow-500"
-                  : "bg-cyan-500"
-            }
-
-            `}
+            className={`h-10 rounded-lg transition-all duration-300 hover:scale-110 ${colorMap[cell]}`}
           />
         ))}
       </div>
