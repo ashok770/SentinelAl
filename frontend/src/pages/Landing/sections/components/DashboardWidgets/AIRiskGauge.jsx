@@ -1,13 +1,8 @@
 import { ShieldAlert, Brain, Lock, Bell, KeyRound } from "lucide-react";
-
-const recommendations = [
-  "Require Multi-Factor Authentication",
-  "Lock Suspicious Session",
-  "Notify Security Team",
-];
+import { dashboardData } from "../../../data/dashboardData";
 
 function AIRiskGauge() {
-  const score = 94;
+  const score = dashboardData.riskScore;
 
   return (
     <div className="h-full rounded-3xl border border-slate-800 bg-[#0A1022] p-6">
@@ -47,7 +42,7 @@ function AIRiskGauge() {
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <h2 className="text-4xl font-bold text-white">{score}%</h2>
 
-            <span className="text-red-400">Critical</span>
+            <span className="text-red-400">{dashboardData.threatLevel}</span>
           </div>
         </div>
       </div>
@@ -59,7 +54,7 @@ function AIRiskGauge() {
             AI Confidence
           </span>
 
-          <span className="font-semibold text-cyan-400">98.7%</span>
+          <span className="font-semibold text-cyan-400">{dashboardData.aiConfidence}%</span>
         </div>
 
         <div className="flex justify-between text-sm">
@@ -68,7 +63,7 @@ function AIRiskGauge() {
             Threat Level
           </span>
 
-          <span className="font-semibold text-red-400">Critical</span>
+          <span className="font-semibold text-red-400">{dashboardData.threatLevel}</span>
         </div>
       </div>
 
@@ -80,22 +75,19 @@ function AIRiskGauge() {
         </h4>
 
         <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <KeyRound size={16} className="text-cyan-400" />
-            <span className="text-sm text-slate-300">Require MFA</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Lock size={16} className="text-yellow-400" />
-            <span className="text-sm text-slate-300">
-              Lock Suspicious Session
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Bell size={16} className="text-red-400" />
-            <span className="text-sm text-slate-300">Notify Security Team</span>
-          </div>
+          {dashboardData.recommendations.map((item, index) => {
+            const icons = [
+              <KeyRound size={16} className="text-cyan-400" />,
+              <Lock size={16} className="text-yellow-400" />,
+              <Bell size={16} className="text-red-400" />,
+            ];
+            return (
+              <div key={index} className="flex items-center gap-3">
+                {icons[index]}
+                <span className="text-sm text-slate-300">{item}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

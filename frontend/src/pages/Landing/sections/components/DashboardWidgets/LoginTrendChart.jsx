@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { TrendingUp } from "lucide-react";
+import { dashboardData } from "../../../data/dashboardData";
 
 const MAX = 120;
-
-const loginData = [
-  { day: "M", value: 28 },
-  { day: "T", value: 46 },
-  { day: "W", value: 39 },
-  { day: "T", value: 64 },
-  { day: "F", value: 52 },
-  { day: "S", value: 74 },
-  { day: "S", value: 92 },
-];
 
 function LoginTrendChart() {
   const [loaded, setLoaded] = useState(false);
@@ -27,13 +18,13 @@ function LoginTrendChart() {
         <div>
           <h3 className="text-white font-semibold text-lg">Login Trend</h3>
 
-          <p className="text-slate-400 text-sm">142 successful authentications today</p>
+          <p className="text-slate-400 text-sm">{dashboardData.totalLogins} successful authentications today</p>
         </div>
 
         <div className="text-right">
           <div className="flex items-center justify-end gap-1 text-emerald-400">
             <TrendingUp size={14} />
-            <span className="font-semibold">+18%</span>
+            <span className="font-semibold">+{dashboardData.loginGrowth}%</span>
           </div>
 
           <p className="text-slate-500 text-xs">vs last week</p>
@@ -50,7 +41,7 @@ function LoginTrendChart() {
 
         <div className="flex-1 flex flex-col">
           <div className="flex items-end justify-around h-44 border-b border-slate-600/70 pb-2">
-            {loginData.map((item, idx) => (
+            {dashboardData.loginTrend.map((item, idx) => (
               <div key={idx} className="group relative flex flex-col items-center">
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2 hidden group-hover:flex flex-col items-center z-10">
                   <div className="bg-slate-800 border border-slate-700 rounded-lg px-2 py-1 text-center whitespace-nowrap">
@@ -69,7 +60,7 @@ function LoginTrendChart() {
           </div>
 
           <div className="flex justify-around mt-3 text-xs text-slate-500">
-            {loginData.map((item, idx) => (
+            {dashboardData.loginTrend.map((item, idx) => (
               <span key={idx}>{item.day}</span>
             ))}
           </div>
