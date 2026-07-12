@@ -1,24 +1,12 @@
 import { useMemo } from "react";
+import { globeNodes } from "../data/globeNodes";
 
 function NetworkNodes() {
-  const nodes = useMemo(() => {
-    return Array.from({ length: 18 }, () => {
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-
-      const radius = 2.02;
-
-      return [
-        radius * Math.sin(phi) * Math.cos(theta),
-        radius * Math.cos(phi),
-        radius * Math.sin(phi) * Math.sin(theta),
-      ];
-    });
-  }, []);
+  const nodes = useMemo(() => globeNodes, []);
 
   return (
     <>
-      {nodes.map((position, index) => (
+      {globeNodes.map((position, index) => (
         <mesh key={index} position={position}>
           <sphereGeometry args={[0.025, 16, 16]} />
 
