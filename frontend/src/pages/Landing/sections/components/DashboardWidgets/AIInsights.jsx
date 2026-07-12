@@ -1,31 +1,32 @@
 import { ShieldCheck, Activity, Users, Brain } from "lucide-react";
+import { dashboardData } from "../../../data/dashboardData";
 
 const insights = [
   {
     icon: ShieldCheck,
     title: "Threats Blocked",
-    value: "98%",
+    value: `${dashboardData.insights.threatsBlocked}%`,
     color: "text-green-400",
   },
 
   {
     icon: Users,
     title: "Active Users",
-    value: "420",
+    value: dashboardData.insights.activeUsers.toString(),
     color: "text-cyan-400",
   },
 
   {
     icon: Brain,
     title: "AI Confidence",
-    value: "98.7%",
+    value: `${dashboardData.insights.aiConfidence}%`,
     color: "text-blue-400",
   },
 
   {
     icon: Activity,
     title: "Behaviour Score",
-    value: "94%",
+    value: `${dashboardData.insights.behaviourScore}%`,
     color: "text-orange-400",
   },
 ];
