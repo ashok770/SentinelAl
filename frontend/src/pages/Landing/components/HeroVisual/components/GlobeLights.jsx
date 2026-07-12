@@ -1,14 +1,13 @@
 function GlobeLights() {
   return (
     <>
-      {/* Ambient */}
-      <ambientLight intensity={0.8} />
+      <ambientLight intensity={0.55} />
 
-      {/* Main Sun Light */}
-      <directionalLight position={[5, 3, 5]} intensity={2} />
+      <directionalLight position={[6, 4, 6]} intensity={2.5} />
 
-      {/* Blue Fill Light */}
-      <pointLight position={[-3, -2, 4]} intensity={1.5} color="#60A5FA" />
+      <pointLight position={[-5, -3, 3]} intensity={1.5} color="#3B82F6" />
+
+      <pointLight position={[0, 5, -5]} intensity={0.8} color="#93C5FD" />
     </>
   );
 }

@@ -3,10 +3,15 @@ import { useFrame } from "@react-three/fiber";
 
 function GlobeScene() {
   const globeRef = useRef();
+  const atmosphereRef = useRef();
 
   useFrame(() => {
     if (globeRef.current) {
-      globeRef.current.rotation.y += 0.002;
+      globeRef.current.rotation.y += 0.0025;
+    }
+
+    if (atmosphereRef.current) {
+      atmosphereRef.current.rotation.y += 0.0022;
     }
   });
 
@@ -17,19 +22,24 @@ function GlobeScene() {
         <sphereGeometry args={[1.8, 64, 64]} />
 
         <meshStandardMaterial
-          color="#4F8CFF"
+          color="#5EA2FF"
           emissive="#2563EB"
-          emissiveIntensity={1.3}
-          metalness={0.25}
-          roughness={0.45}
+          emissiveIntensity={1.1}
+          roughness={0.35}
+          metalness={0.15}
         />
       </mesh>
 
       {/* Atmosphere */}
-      <mesh scale={1.05}>
+      <mesh ref={atmosphereRef} scale={1.08}>
         <sphereGeometry args={[1.8, 64, 64]} />
 
-        <meshBasicMaterial color="#60A5FA" transparent opacity={0.08} />
+        <meshBasicMaterial
+          color="#60A5FA"
+          transparent
+          opacity={0.12}
+          side={2}
+        />
       </mesh>
     </group>
   );
