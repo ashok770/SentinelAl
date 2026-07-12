@@ -1,8 +1,12 @@
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+
 function Landing() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 text-white text-5xl font-bold">
-      Landing Page
-    </div>
+    <main className="min-h-screen bg-slate-950">
+      <Navbar />
+      <Hero />
+    </main>
   );
 }
 

@@ -1,4 +1,4 @@
-import './AnalyticsPage.css'
+import "./AnalyticsPage.css";
 
 function AnalyticsPage() {
   return (
@@ -6,7 +6,7 @@ function AnalyticsPage() {
       <h1>Analytics</h1>
       <p>Visualize trends and monitor performance across security data.</p>
     </section>
-  )
+  );
 }
 
-export default AnalyticsPage
+export default AnalyticsPage;
