@@ -11,11 +11,11 @@ function TimelineStep({
   const isCritical = status === "Critical";
 
   return (
-    <div className="relative flex gap-5">
+    <div className="relative flex gap-3">
       {/* Timeline */}
       <div className="flex flex-col items-center">
         <div
-          className={`flex h-12 w-12 items-center justify-center rounded-full border
+          className={`flex h-10 w-10 items-center justify-center rounded-full border
           ${
             isCritical
               ? "border-red-500/30 bg-red-500/10 text-red-400"
@@ -29,16 +29,16 @@ function TimelineStep({
       </div>
 
       {/* Content */}
-      <div className="flex-1 pb-8">
+      <div className="flex-1 pb-3">
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-xs text-slate-500">{time}</p>
+            <p className="text-[10px] text-slate-500">{time}</p>
 
-            <h3 className="mt-1 text-lg font-semibold text-white">{title}</h3>
+            <h3 className="mt-1 text-base font-semibold text-white">{title}</h3>
           </div>
 
           <div
-            className={`flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium
+            className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium
             ${
               isCritical
                 ? "bg-red-500/10 text-red-400"
@@ -55,7 +55,7 @@ function TimelineStep({
           </div>
         </div>
 
-        <p className="mt-3 max-w-xl leading-7 text-slate-400">{description}</p>
+        <p className="mt-3 max-w-xl leading-7 text-slate-400 text-xs">{description}</p>
       </div>
     </div>
   );
