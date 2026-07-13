@@ -39,7 +39,7 @@ function RecommendationList() {
             <span
               className={`rounded-full border px-2 py-0.5 text-xs font-medium ${badgeColor[item.color]}`}
             >
-              {item.priority}
+              {item.priority === "High" ? "P1" : item.priority === "Medium" ? "P2" : "P3"}
             </span>
           </div>
         ))}

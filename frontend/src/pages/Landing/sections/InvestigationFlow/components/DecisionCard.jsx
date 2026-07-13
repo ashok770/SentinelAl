@@ -64,7 +64,7 @@ function DecisionCard() {
       {/* Explanation */}
 
       <div>
-        <h4 className="text-sm uppercase tracking-wider text-slate-500 mb-4">
+        <h4 className="text-xs uppercase tracking-wider font-semibold text-slate-500 mb-4">
           Why this decision?
         </h4>
 

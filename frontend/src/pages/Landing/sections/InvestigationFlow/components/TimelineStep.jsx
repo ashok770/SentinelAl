@@ -25,14 +25,14 @@ function TimelineStep({
           {icon}
         </div>
 
-        {!isLast && <div className="mt-2 h-16 w-px bg-slate-700" />}
+        {!isLast && <div className="mt-2 h-16 w-px bg-cyan-900/40" />}
       </div>
 
       {/* Content */}
       <div className="flex-1 pb-3">
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-[10px] text-slate-500">{time}</p>
+            <p className="text-[10px] text-slate-400">{time}</p>
 
             <h3 className="mt-1 text-base font-semibold text-white">{title}</h3>
           </div>
