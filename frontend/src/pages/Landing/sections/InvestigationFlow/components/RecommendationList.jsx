@@ -1,3 +1,4 @@
+import React from "react";
 import { ShieldCheck, Lock, Bell, KeyRound } from "lucide-react";
 
 import { recommendations } from "../data/investigationData";
@@ -18,8 +19,8 @@ const badgeColor = {
 
 function RecommendationList() {
   return (
-    <div className="rounded-3xl border border-slate-800 bg-[#0A1022] p-8">
-      <h3 className="text-2xl font-semibold text-white mb-8">
+    <div className="rounded-3xl border border-slate-800 bg-[#0A1022] px-6 py-5">
+      <h3 className="text-xl font-semibold text-white mb-5">
         Recommended Response
       </h3>
 
@@ -27,16 +28,16 @@ function RecommendationList() {
         {recommendations.map((item, index) => (
           <div
             key={index}
-            className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-900/40 px-5 py-4 transition hover:border-cyan-500/30"
+            className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900/40 px-4 py-2 transition hover:border-cyan-500/30"
           >
             <div className="flex items-center gap-4">
-              <div className="text-cyan-400">{iconMap[item.action]}</div>
+              <div className="text-cyan-400">{iconMap[item.action] && React.cloneElement(iconMap[item.action], { size: 16 })}</div>
 
-              <span className="text-slate-200">{item.action}</span>
+              <span className="text-slate-200 text-sm">{item.action}</span>
             </div>
 
             <span
-              className={`rounded-full border px-3 py-1 text-xs font-medium ${badgeColor[item.color]}`}
+              className={`rounded-full border px-2 py-0.5 text-xs font-medium ${badgeColor[item.color]}`}
             >
               {item.priority}
             </span>

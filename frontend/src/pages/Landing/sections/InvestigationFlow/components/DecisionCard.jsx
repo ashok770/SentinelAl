@@ -4,7 +4,7 @@ import RecommendationList from "./RecommendationList";
 
 function DecisionCard() {
   return (
-    <div className="rounded-3xl border border-slate-800 bg-[#0A1022] p-8 h-full">
+    <div className="rounded-3xl border border-slate-800 bg-[#0A1022] px-6 py-5 h-full">
       {/* Header */}
 
       <div className="flex items-center justify-between">
@@ -17,7 +17,7 @@ function DecisionCard() {
 
       {/* Decision */}
 
-      <div className="mt-8 rounded-2xl border border-red-500/20 bg-red-500/5 p-6">
+      <div className="mt-5 rounded-xl border border-red-500/20 bg-red-500/5 py-3 px-4">
         <div className="flex items-center gap-3">
           <ShieldAlert className="text-red-400" size={30} />
 
@@ -33,7 +33,7 @@ function DecisionCard() {
 
       {/* Metrics */}
 
-      <div className="mt-8 space-y-5">
+      <div className="mt-5 space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 text-slate-400">
             <Brain size={18} />
@@ -59,7 +59,7 @@ function DecisionCard() {
 
       {/* Divider */}
 
-      <div className="my-8 h-px bg-slate-800" />
+      <div className="my-4 h-px bg-slate-800" />
 
       {/* Explanation */}
 
@@ -68,7 +68,7 @@ function DecisionCard() {
           Why this decision?
         </h4>
 
-        <div className="space-y-4">
+        <div className="space-y-2">
           {decisionData.reasons.map((reason, index) => (
             <div key={index} className="flex items-start gap-3">
               <CheckCircle2 size={18} className="text-cyan-400 mt-0.5" />
