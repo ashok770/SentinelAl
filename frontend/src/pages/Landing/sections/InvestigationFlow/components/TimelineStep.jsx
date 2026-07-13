@@ -8,7 +8,7 @@ function TimelineStep({
   status,
   isLast = false,
 }) {
-  const isCritical = status === "critical";
+  const isCritical = status === "Critical";
 
   return (
     <div className="relative flex gap-5">
@@ -51,7 +51,7 @@ function TimelineStep({
               <CheckCircle2 size={14} />
             )}
 
-            {isCritical ? "Critical" : "Completed"}
+            {status}
           </div>
         </div>
 
