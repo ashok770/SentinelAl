@@ -9,11 +9,11 @@ function InvestigationFlow() {
         <FlowHeader />
 
         <div className="mt-20 grid grid-cols-12 gap-8">
-          <div className="col-span-7">
+          <div className="col-span-6">
             <InvestigationTimeline />
           </div>
 
-          <div className="col-span-5">
+          <div className="col-span-6">
             <DecisionCard />
           </div>
         </div>
