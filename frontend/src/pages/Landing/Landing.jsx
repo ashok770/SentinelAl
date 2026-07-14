@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import DashboardShowcase from "./sections/DashboardShowcase";
 import InvestigationFlow from "./sections/InvestigationFlow/InvestigationFlow";
+import WorkflowComparison from "./sections/WorkflowComparison/WorkflowComparison";
 
 function Landing() {
   return (
@@ -10,6 +11,7 @@ function Landing() {
       <Hero />
       <DashboardShowcase />
       <InvestigationFlow />
+      <WorkflowComparison />
     </main>
   );
 }
