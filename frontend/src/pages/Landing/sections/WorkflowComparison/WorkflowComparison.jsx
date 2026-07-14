@@ -1,27 +1,29 @@
 import WorkflowHeader from "./components/WorkflowHeader";
-import WorkflowColumn from "./components/WorkflowColumn";
+import WorkflowTimeline from "./components/WorkflowTimeline";
 
 import { traditionalWorkflow, sentinelWorkflow } from "./data/workflowData";
 
 function WorkflowComparison() {
   return (
-    <section className="bg-[#050816] py-32">
+    <section className="relative bg-[#050816] py-32">
       <div className="mx-auto max-w-7xl px-6">
+        {/* Header */}
         <WorkflowHeader />
 
-        <div className="grid grid-cols-2 gap-8">
-          <WorkflowColumn
-            title="Traditional Investigation"
-            subtitle="Manual investigation across multiple tools."
+        {/* Two Workflows */}
+        <div className="mt-20 grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <WorkflowTimeline
+            title="Today's Investigation"
+            subtitle="Security teams manually correlate evidence across multiple tools."
             steps={traditionalWorkflow}
-            accent="gray"
+            accentColor="slate"
           />
 
-          <WorkflowColumn
+          <WorkflowTimeline
             title="SentinelAI Investigation"
-            subtitle="AI-assisted investigation from alert to action."
+            subtitle="AI correlates evidence and explains every security decision."
             steps={sentinelWorkflow}
-            accent="cyan"
+            accentColor="cyan"
           />
         </div>
       </div>
