@@ -6,6 +6,7 @@ import WorkflowComparison from "./sections/WorkflowComparison/WorkflowComparison
 import OutcomeComparison from "./sections/OutcomeComparison/OutcomeComparison";
 import EnterpriseIntegration from "./sections/EnterpriseIntegration/EnterpriseIntegration";
 import EnterpriseOperations from "./sections/EnterpriseOperations/EnterpriseOperations";
+import FAQ from "./sections/FAQ/FAQ";
 function Landing() {
   return (
     <main className="min-h-screen bg-slate-950">
@@ -17,6 +18,7 @@ function Landing() {
       <OutcomeComparison />
       <EnterpriseIntegration />
       <EnterpriseOperations />
+      <FAQ />
     </main>
   );
 }
