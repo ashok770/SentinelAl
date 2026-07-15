@@ -7,6 +7,7 @@ import OutcomeComparison from "./sections/OutcomeComparison/OutcomeComparison";
 import EnterpriseIntegration from "./sections/EnterpriseIntegration/EnterpriseIntegration";
 import EnterpriseOperations from "./sections/EnterpriseOperations/EnterpriseOperations";
 import FAQ from "./sections/FAQ/FAQ";
+import FinalCTA from "./sections/FinalCTA/FinalCTA";
 function Landing() {
   return (
     <main className="min-h-screen bg-slate-950">
@@ -19,6 +20,7 @@ function Landing() {
       <EnterpriseIntegration />
       <EnterpriseOperations />
       <FAQ />
+      <FinalCTA />
     </main>
   );
 }
