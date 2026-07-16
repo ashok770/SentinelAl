@@ -8,6 +8,7 @@ import EnterpriseIntegration from "./sections/EnterpriseIntegration/EnterpriseIn
 import EnterpriseOperations from "./sections/EnterpriseOperations/EnterpriseOperations";
 import FAQ from "./sections/FAQ/FAQ";
 import FinalCTA from "./sections/FinalCTA/FinalCTA";
+import Footer from "./sections/Footer/Footer";
 function Landing() {
   return (
     <main className="min-h-screen bg-slate-950">
@@ -21,6 +22,7 @@ function Landing() {
       <EnterpriseOperations />
       <FAQ />
       <FinalCTA />
+      <Footer />
     </main>
   );
 }
