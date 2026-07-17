@@ -16,13 +16,19 @@ function CTAContent() {
       </p>
 
       <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <button className="rounded-xl bg-cyan-500 px-8 py-4 font-semibold text-slate-950 transition-all duration-300 hover:bg-cyan-400">
+        <a
+          href="#contact"
+          className="rounded-xl bg-cyan-500 px-8 py-4 font-semibold text-slate-950 transition-all duration-300 hover:bg-cyan-400"
+        >
           Request Demo
-        </button>
+        </a>
 
-        <button className="rounded-xl border border-slate-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-cyan-500 hover:text-cyan-300">
+        <a
+          href="#contact"
+          className="rounded-xl border border-slate-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-cyan-500 hover:text-cyan-300"
+        >
           Join Early Access
-        </button>
+        </a>
       </div>
     </div>
   );

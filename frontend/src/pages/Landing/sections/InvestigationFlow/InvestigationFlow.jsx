@@ -4,7 +4,7 @@ import DecisionCard from "./components/DecisionCard";
 
 function InvestigationFlow() {
   return (
-    <section className="relative bg-[#050816] py-32">
+    <section id="how-it-works" className="relative bg-[#050816] py-32">
       <div className="max-w-7xl mx-auto px-6">
         <FlowHeader />
 

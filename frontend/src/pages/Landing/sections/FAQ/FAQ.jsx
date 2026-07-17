@@ -5,9 +5,8 @@ import { faqData } from "./data/faqData";
 
 function FAQ() {
   return (
-    <section className="relative bg-[#050816] py-32">
+    <section id="faq" className="relative bg-[#050816] py-32">
       <div className="mx-auto max-w-4xl px-6">
-        {/* Header */}
         <FAQHeader />
 
         {/* Questions */}

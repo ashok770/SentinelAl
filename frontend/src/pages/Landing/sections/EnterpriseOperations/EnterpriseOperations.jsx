@@ -5,12 +5,10 @@ import { operationsCards } from "./data/operationsData";
 
 function EnterpriseOperations() {
   return (
-    <section className="relative bg-[#050816] py-32">
+    <section id="enterprise" className="relative bg-[#050816] py-32">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Header */}
         <OperationsHeader />
 
-        {/* Cards */}
         <div className="mt-20 grid gap-8 lg:grid-cols-3">
           {operationsCards.map((card, index) => (
             <OperationsCard

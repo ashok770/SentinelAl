@@ -3,7 +3,7 @@ import ComparisonTable from "./components/ComparisonTable";
 
 function OutcomeComparison() {
   return (
-    <section className="relative bg-[#050816] py-32">
+    <section id="why-sentinel" className="relative bg-[#050816] py-32">
       <div className="mx-auto max-w-7xl px-6">
         <OutcomeHeader />
 

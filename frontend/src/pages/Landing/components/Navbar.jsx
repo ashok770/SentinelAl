@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
-
 const navLinks = [
-  { name: "Features", href: "#features" },
-  { name: "How It Works", href: "#how-it-works" },
-  { name: "Pricing", href: "#pricing" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
+  { name: "Features",      href: "#features"     },
+  { name: "How It Works",  href: "#how-it-works"  },
+  { name: "Why SentinelAI", href: "#why-sentinel" },
+  { name: "Integrations",  href: "#integrations"  },
+  { name: "Enterprise",    href: "#enterprise"    },
+  { name: "FAQ",           href: "#faq"           },
+  { name: "Contact",       href: "#contact"       },
 ];
 
 function Navbar() {
@@ -13,9 +13,9 @@ function Navbar() {
     <header className="fixed top-0 left-0 w-full z-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-5">
         {/* Logo */}
-        <Link to="/" className="text-3xl font-bold tracking-tight text-white">
+        <a href="#hero" className="text-3xl font-bold tracking-tight text-white">
           Sentinel<span className="text-blue-400">AI</span>
-        </Link>
+        </a>
 
         {/* Navigation */}
         <ul className="hidden lg:flex items-center gap-10">
@@ -37,9 +37,12 @@ function Navbar() {
             Login
           </button>
 
-          <button className="rounded-xl bg-blue-500 px-5 py-2 text-sm font-medium text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400">
+          <a
+            href="#contact"
+            className="rounded-xl bg-blue-500 px-5 py-2 text-sm font-medium text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400"
+          >
             Get Started
-          </button>
+          </a>
         </div>
       </nav>
     </header>

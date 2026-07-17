@@ -6,10 +6,8 @@ import UserHeatmap from "./components/DashboardWidgets/UserHeatmap";
 
 const DashboardShowcase = () => {
   return (
-    <section className="relative bg-[#050816] py-32">
+    <section id="features" className="relative bg-[#050816] py-32">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
-
         <div className="text-center mb-20">
           <span className="inline-flex items-center rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-300">
             Live AI Dashboard
