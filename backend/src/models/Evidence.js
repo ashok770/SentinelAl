@@ -55,7 +55,6 @@ const evidenceSchema = new mongoose.Schema(
 );
 
 // Indexes
-evidenceSchema.index({ investigationId: 1 });
 evidenceSchema.index({ type: 1 });
 
 const Evidence = mongoose.model("Evidence", evidenceSchema);
