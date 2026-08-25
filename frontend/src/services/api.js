@@ -16,3 +16,15 @@ export async function fetcher(path, options = {}) {
 
   return response.json()
 }
+
+export async function getInvestigations() {
+  const response = await fetcher('/v1/investigations')
+
+  return response.data.investigations
+}
+
+export async function getInvestigation(id) {
+  const response = await fetcher(`/v1/investigations/${id}`)
+
+  return response.data
+}
