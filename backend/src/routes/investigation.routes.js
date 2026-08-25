@@ -4,12 +4,14 @@ import { createEvidence } from "../controllers/evidence.controller.js";
 import {
   createInvestigation,
   getInvestigationDetails,
+  getInvestigations,
 } from "../controllers/investigation.controller.js";
 
 const router = Router();
 
 router.post("/", createInvestigation);
 router.post("/:investigationId/evidence", createEvidence);
+router.get("/", getInvestigations);
 router.get("/:investigationId", getInvestigationDetails);
 
 export default router;

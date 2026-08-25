@@ -1,6 +1,7 @@
 import {
   createInvestigation as createInvestigationService,
   getInvestigationDetails as getInvestigationDetailsService,
+  getInvestigations as getInvestigationsService,
 } from "../services/investigation.service.js";
 
 export const createInvestigation = async (req, res) => {
@@ -11,6 +12,25 @@ export const createInvestigation = async (req, res) => {
       success: true,
       message: "Investigation created successfully",
       data: createdInvestigation,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const getInvestigations = async (req, res) => {
+  try {
+    const investigations = await getInvestigationsService();
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        investigations,
+        count: investigations.length,
+      },
     });
   } catch (error) {
     return res.status(500).json({
