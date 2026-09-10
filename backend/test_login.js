@@ -221,12 +221,18 @@ async function runTests() {
     assert(res.status >= 400 && res.status < 500, `Expected 4xx client rejection, got ${res.status}`);
     assert(data.success === false, "Expected success: false");
     assert(data.message.toLowerCase().includes("inactive"), `Expected message indicating inactive status, got "${data.message}"`);
+
+    // Restore active status
+    await User.findByIdAndUpdate(userId, { isActive: true });
   }
 
   // Test 10: Investigation Regression Test
   {
     console.log("\nTest 10: Investigation Regression Test");
-    const invRes = await fetch(INVESTIGATION_URL);
+    const validCookie = cookieHeader ? cookieHeader.split(";")[0] : "";
+    const invRes = await fetch(INVESTIGATION_URL, {
+      headers: { "Cookie": validCookie }
+    });
     const invData = await invRes.json();
     assert(invRes.status === 200, `Expected status 200 for investigations, got ${invRes.status}`);
     assert(invData.success === true, "Expected success: true for investigations");

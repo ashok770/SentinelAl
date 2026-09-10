@@ -81,7 +81,7 @@ const validateLoginData = (data) => {
  * @param {import("../models/User.js").default} user
  * @returns {Object}
  */
-const toSafeUser = (user) => {
+export const toSafeUser = (user) => {
   const userObj = user.toObject ? user.toObject() : { ...user };
   delete userObj.passwordHash;
 

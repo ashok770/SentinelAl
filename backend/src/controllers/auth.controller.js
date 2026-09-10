@@ -1,5 +1,5 @@
 import { env } from "../config/env.js";
-import { loginService, signupService } from "../services/auth.service.js";
+import { loginService, signupService, toSafeUser } from "../services/auth.service.js";
 
 /**
  * Converts a duration string (e.g. "1h", "7d", "30m", "60s") to milliseconds.
@@ -124,6 +124,25 @@ export const login = async (req, res) => {
       message: "Login successful",
       data: {
         user,
+      },
+    });
+  } catch (error) {
+    return handleAuthError(res, error);
+  }
+};
+
+/**
+ * Controller handling GET /api/v1/auth/me.
+ * Returns the current authenticated user.
+ */
+export const getMe = (req, res) => {
+  try {
+    const safeUser = toSafeUser(req.user);
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        user: safeUser,
       },
     });
   } catch (error) {
