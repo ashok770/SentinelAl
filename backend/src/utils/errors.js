@@ -24,3 +24,16 @@ export class DuplicateEmailError extends ConflictError {
     super(message);
   }
 }
+
+export class UnauthorizedError extends AppError {
+  constructor(message = "Invalid email or password") {
+    super(message, 401);
+  }
+}
+
+export class ForbiddenError extends AppError {
+  constructor(message = "Access forbidden") {
+    super(message, 403);
+  }
+}
+

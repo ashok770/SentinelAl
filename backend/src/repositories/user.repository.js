@@ -3,11 +3,20 @@ import User from "../models/User.js";
 /**
  * Find a user document by normalized email.
  * @param {string} email
+ * @param {Object} [options]
+ * @param {boolean} [options.includePassword=false]
  * @returns {Promise<import("../models/User.js").default | null>}
  */
-export const findUserByEmail = async (email) => {
+export const findUserByEmail = async (
+  email,
+  { includePassword = false } = {},
+) => {
   if (!email) return null;
-  return User.findOne({ email: email.toLowerCase().trim() });
+  const query = User.findOne({ email: email.toLowerCase().trim() });
+  if (includePassword) {
+    query.select("+passwordHash");
+  }
+  return query;
 };
 
 /**
@@ -40,4 +49,18 @@ export const createUser = async (userOrData) => {
  */
 export const saveUser = async (user) => {
   return user.save();
+};
+
+/**
+ * Updates a user's lastLoginAt timestamp.
+ * @param {string} userId
+ * @param {Date} [timestamp=new Date()]
+ * @returns {Promise<import("../models/User.js").default | null>}
+ */
+export const updateUserLastLogin = async (userId, timestamp = new Date()) => {
+  return User.findByIdAndUpdate(
+    userId,
+    { lastLoginAt: timestamp },
+    { new: true },
+  );
 };

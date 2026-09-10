@@ -7,6 +7,7 @@ import {
 } from "../repositories/user.repository.js";
 import {
   DuplicateEmailError,
+  UnauthorizedError,
   ValidationError,
 } from "../utils/errors.js";
 
@@ -50,6 +51,32 @@ const validateSignupData = (data) => {
 };
 
 /**
+ * Validates and normalizes login input.
+ * @param {Object} data
+ * @returns {{ normalizedEmail: string, password: string }}
+ */
+const validateLoginData = (data) => {
+  if (!data || typeof data !== "object") {
+    throw new ValidationError("Login data is required");
+  }
+
+  const { email, password } = data;
+
+  if (typeof email !== "string" || !EMAIL_REGEX.test(email.trim().toLowerCase())) {
+    throw new ValidationError("A valid email address is required");
+  }
+
+  if (typeof password !== "string" || password.length === 0) {
+    throw new ValidationError("Password is required");
+  }
+
+  return {
+    normalizedEmail: email.trim().toLowerCase(),
+    password,
+  };
+};
+
+/**
  * Returns a sanitized representation of the user without sensitive fields.
  * @param {import("../models/User.js").default} user
  * @returns {Object}
@@ -66,6 +93,7 @@ const toSafeUser = (user) => {
     provider: userObj.provider,
     isActive: userObj.isActive,
     avatarUrl: userObj.avatarUrl,
+    lastLoginAt: userObj.lastLoginAt,
     createdAt: userObj.createdAt,
     updatedAt: userObj.updatedAt,
   };
@@ -126,3 +154,46 @@ export const signupService = async (signupData) => {
     token,
   };
 };
+
+/**
+ * Handles login business logic:
+ * - Validates input (email, password)
+ * - Finds user by normalized email (including passwordHash)
+ * - Verifies password using User.comparePassword()
+ * - Rejects inactive users
+ * - Updates lastLoginAt
+ * - Generates JWT token
+ * - Returns safe user and token
+ *
+ * @param {Object} loginData
+ * @returns {Promise<{ user: Object, token: string }>}
+ */
+export const loginService = async (loginData) => {
+  const { normalizedEmail, password } = validateLoginData(loginData);
+
+  const user = await findUserByEmail(normalizedEmail, { includePassword: true });
+  if (!user) {
+    throw new UnauthorizedError("Invalid email or password");
+  }
+
+  const isPasswordValid = await user.comparePassword(password);
+  if (!isPasswordValid) {
+    throw new UnauthorizedError("Invalid email or password");
+  }
+
+  if (!user.isActive) {
+    throw new UnauthorizedError("Account is inactive");
+  }
+
+  user.lastLoginAt = new Date();
+  const updatedUser = await saveUser(user);
+
+  const token = generateAuthToken(updatedUser);
+  const safeUser = toSafeUser(updatedUser);
+
+  return {
+    user: safeUser,
+    token,
+  };
+};
+
