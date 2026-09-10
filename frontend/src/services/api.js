@@ -28,3 +28,9 @@ export async function getInvestigation(id) {
 
   return response.data
 }
+
+export async function getCurrentUser() {
+  const response = await fetcher('/v1/auth/me')
+
+  return response.data.user
+}
