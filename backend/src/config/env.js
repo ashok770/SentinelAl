@@ -32,4 +32,11 @@ export const env = {
     SECURE: process.env.COOKIE_SECURE === "true",
     SAME_SITE: process.env.COOKIE_SAME_SITE || "lax",
   },
+
+  GOOGLE: {
+    CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL || "http://localhost:5000/api/v1/auth/google/callback",
+  },
+  FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:5173",
 };

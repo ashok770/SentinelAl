@@ -1,5 +1,12 @@
 import { env } from "../config/env.js";
 import { loginService, signupService, toSafeUser } from "../services/auth.service.js";
+import {
+  generateOAuthState,
+  generateGoogleAuthUrl,
+  exchangeGoogleCode,
+  getGoogleUserInfo,
+  processGoogleLogin,
+} from "../services/google-oauth.service.js";
 
 /**
  * Converts a duration string (e.g. "1h", "7d", "30m", "60s") to milliseconds.
@@ -169,5 +176,61 @@ export const getMe = (req, res) => {
     });
   } catch (error) {
     return handleAuthError(res, error);
+  }
+};
+
+/**
+ * Initiates the Google OAuth flow.
+ */
+export const googleAuth = (req, res) => {
+  const state = generateOAuthState();
+
+  res.cookie("sentinelai_oauth_state", state, {
+    httpOnly: true,
+    secure: env.COOKIE.SECURE,
+    sameSite: env.COOKIE.SAME_SITE,
+    maxAge: 10 * 60 * 1000, // 10 minutes
+    path: "/api/v1/auth/google", // covers both /google and /google/callback
+  });
+
+  const url = generateGoogleAuthUrl(state);
+  res.redirect(url);
+};
+
+/**
+ * Handles the Google OAuth callback.
+ */
+export const googleAuthCallback = async (req, res) => {
+  const { code, state, error } = req.query;
+  const cookieState = req.cookies.sentinelai_oauth_state;
+
+  // Clear state cookie safely
+  res.clearCookie("sentinelai_oauth_state", {
+    httpOnly: true,
+    secure: env.COOKIE.SECURE,
+    sameSite: env.COOKIE.SAME_SITE,
+    path: "/api/v1/auth/google",
+  });
+
+  if (error) {
+    return res.redirect(`${env.FRONTEND_URL}/auth?mode=login&error=google_auth_denied`);
+  }
+
+  if (!state || !cookieState || state !== cookieState) {
+    return res.redirect(`${env.FRONTEND_URL}/auth?mode=login&error=oauth_state_invalid`);
+  }
+
+  try {
+    const accessToken = await exchangeGoogleCode(code);
+    const userInfo = await getGoogleUserInfo(accessToken);
+    const { user, token } = await processGoogleLogin(userInfo);
+
+    setAuthCookie(res, token);
+    return res.redirect(`${env.FRONTEND_URL}/dashboard`);
+  } catch (err) {
+    if (err.isConflict) {
+      return res.redirect(`${env.FRONTEND_URL}/auth?mode=login&error=google_account_requires_existing_login`);
+    }
+    return res.redirect(`${env.FRONTEND_URL}/auth?mode=login&error=google_auth_failed`);
   }
 };

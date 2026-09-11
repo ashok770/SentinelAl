@@ -29,6 +29,16 @@ export const findUserById = async (id) => {
 };
 
 /**
+ * Find a user document by its Google ID.
+ * @param {string} googleId
+ * @returns {Promise<import("../models/User.js").default | null>}
+ */
+export const findUserByGoogleId = async (googleId) => {
+  if (!googleId) return null;
+  return User.findOne({ googleId });
+};
+
+/**
  * Create and persist a new user document.
  * Accepts either a User document instance or raw user data object.
  * @param {Object|import("../models/User.js").default} userOrData
