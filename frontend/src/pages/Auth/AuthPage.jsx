@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import {
   ShieldCheck,
   Eye,
@@ -29,6 +29,7 @@ function AuthPage() {
   const [infoMessage, setInfoMessage] = useState(null)
 
   const navigate = useNavigate()
+  const location = useLocation()
   const { refreshUser } = useAuth()
 
   const handleModeChange = (targetMode) => {
@@ -93,7 +94,11 @@ function AuthPage() {
       }
 
       await refreshUser()
-      navigate(ROUTES.dashboard)
+      const destination =
+        location.state?.from?.pathname
+          ? `${location.state.from.pathname}${location.state.from.search || ''}`
+          : ROUTES.dashboard
+      navigate(destination, { replace: true })
     } catch (err) {
       if (err.status === 401 && isLogin) {
         setError('Invalid email or password.')
