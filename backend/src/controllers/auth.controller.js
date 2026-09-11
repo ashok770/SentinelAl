@@ -132,6 +132,28 @@ export const login = async (req, res) => {
 };
 
 /**
+ * Controller handling user logout (POST /api/v1/auth/logout).
+ * Clears the HTTP-only auth cookie.
+ */
+export const logout = (req, res) => {
+  try {
+    res.clearCookie(env.COOKIE.NAME, {
+      httpOnly: true,
+      secure: env.COOKIE.SECURE,
+      sameSite: env.COOKIE.SAME_SITE,
+      path: '/',
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    return handleAuthError(res, error);
+  }
+};
+
+/**
  * Controller handling GET /api/v1/auth/me.
  * Returns the current authenticated user.
  */
