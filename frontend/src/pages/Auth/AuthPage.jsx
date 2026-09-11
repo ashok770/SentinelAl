@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import {
   ShieldCheck,
@@ -35,8 +35,26 @@ function AuthPage() {
   const handleModeChange = (targetMode) => {
     setError(null)
     setInfoMessage(null)
-    setSearchParams({ mode: targetMode }, { replace: true })
+    searchParams.set('mode', targetMode)
+    setSearchParams(searchParams, { replace: true })
   }
+
+  useEffect(() => {
+    const errorParam = searchParams.get('error')
+    if (errorParam) {
+      if (errorParam === 'google_account_requires_existing_login') {
+        setError('An account with this email already exists. Please log in with your password.')
+      } else if (errorParam === 'google_auth_denied') {
+        setError('Google sign-in was canceled.')
+      } else if (errorParam === 'oauth_state_invalid') {
+        setError('Authentication session expired. Please try again.')
+      } else {
+        setError('Google authentication failed. Please try again.')
+      }
+      searchParams.delete('error')
+      setSearchParams(searchParams, { replace: true })
+    }
+  }, [searchParams, setSearchParams])
 
   const handleForgotPassword = () => {
     setError(null)
@@ -48,11 +66,8 @@ function AuthPage() {
   }
 
   const handleGoogleAuth = () => {
-    setError(null)
-    setInfoMessage('Google SSO is connecting to your enterprise directory...')
-    setTimeout(() => {
-      setInfoMessage(null)
-    }, 4000)
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'
+    window.location.href = `${API_BASE_URL}/v1/auth/google`
   }
 
   const handleSubmit = async (e) => {
@@ -202,7 +217,7 @@ function AuthPage() {
                   d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
                 />
               </svg>
-              <span>Continue Google</span>
+              <span>Continue with Google</span>
             </button>
           </div>
 
