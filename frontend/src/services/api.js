@@ -52,3 +52,11 @@ export async function signupUser(data) {
 
   return response.data.user
 }
+
+export async function logoutUser() {
+  const response = await fetcher('/v1/auth/logout', {
+    method: 'POST',
+  })
+
+  return response
+}

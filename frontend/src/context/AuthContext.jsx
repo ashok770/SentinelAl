@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { getCurrentUser } from '../services/api.js'
+import { getCurrentUser, logoutUser } from '../services/api.js'
 
 export const AuthContext = createContext(null)
 
@@ -33,7 +33,15 @@ export function AuthProvider({ children }) {
       loading,
       isAuthenticated: !!user,
       refreshUser,
-      signOut: () => setUser(null), // Placeholder for logout slice
+      signOut: async () => {
+        try {
+          await logoutUser()
+          setUser(null)
+        } catch (error) {
+          console.error('Logout failed on backend:', error)
+          throw error;
+        }
+      },
     }),
     [user, loading],
   )

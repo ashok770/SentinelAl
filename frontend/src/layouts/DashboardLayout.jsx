@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { useState, useContext } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext.jsx";
 import {
   Activity,
   BarChart3,
@@ -10,6 +11,7 @@ import {
   ShieldCheck,
   Users,
   X,
+  LogOut,
 } from "lucide-react";
 
 import { ROUTES } from "../constants/routes.js";
@@ -61,6 +63,13 @@ function SidebarContent() {
 
 function DashboardLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { signOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/auth?mode=login");
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -106,9 +115,19 @@ function DashboardLayout() {
               Investigation Console
             </h1>
           </div>
-          <span className="hidden text-xs text-slate-500 sm:block">
-            SentinelAI
-          </span>
+          <div className="flex items-center gap-4">
+            <span className="hidden text-xs text-slate-500 sm:block">
+              SentinelAI
+            </span>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 rounded-lg bg-slate-900 px-3 py-1.5 text-sm font-medium text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+              aria-label="Log out"
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="hidden sm:inline">Log out</span>
+            </button>
+          </div>
         </header>
 
         {/* Main content area */}
