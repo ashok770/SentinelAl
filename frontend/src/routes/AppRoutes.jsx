@@ -4,6 +4,7 @@ import PublicLayout from "../layouts/PublicLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 
 import Landing from "../pages/Landing/Landing";
+import AuthPage from "../pages/Auth/AuthPage";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import InvestigationsPage from "../pages/Investigations/InvestigationsPage";
 import InvestigationDetailsPage from "../pages/Investigations/InvestigationDetailsPage";
@@ -17,6 +18,7 @@ function AppRoutes() {
         {/* Public Routes */}
         <Route element={<PublicLayout />}>
           <Route path={ROUTES.landing} element={<Landing />} />
+          <Route path={ROUTES.auth} element={<AuthPage />} />
         </Route>
 
         {/* Dashboard Routes */}

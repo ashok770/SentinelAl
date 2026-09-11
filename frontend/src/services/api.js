@@ -34,3 +34,21 @@ export async function getCurrentUser() {
 
   return response.data.user
 }
+
+export async function loginUser(credentials) {
+  const response = await fetcher('/v1/auth/login', {
+    method: 'POST',
+    body: JSON.stringify(credentials),
+  })
+
+  return response.data.user
+}
+
+export async function signupUser(data) {
+  const response = await fetcher('/v1/auth/signup', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+
+  return response.data.user
+}

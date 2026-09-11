@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../constants/routes.js";
+
 const navLinks = [
   { name: "Features",      href: "#features"     },
   { name: "How It Works",  href: "#how-it-works"  },
@@ -33,16 +36,19 @@ function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-4">
-          <button className="rounded-xl border border-slate-600 px-5 py-2 text-sm text-white transition hover:border-slate-500">
+          <Link
+            to={`${ROUTES.auth}?mode=login`}
+            className="rounded-xl border border-slate-600 px-5 py-2 text-sm text-white transition hover:border-slate-500"
+          >
             Login
-          </button>
+          </Link>
 
-          <a
-            href="#contact"
+          <Link
+            to={`${ROUTES.auth}?mode=signup`}
             className="rounded-xl bg-blue-500 px-5 py-2 text-sm font-medium text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400"
           >
             Get Started
-          </a>
+          </Link>
         </div>
       </nav>
     </header>
