@@ -6,6 +6,7 @@ import {
   createInvestigation,
   getInvestigationDetails,
   getInvestigations,
+  getAlertContext,
 } from "../controllers/investigation.controller.js";
 
 const router = Router();
@@ -15,6 +16,7 @@ router.use(requireAuth);
 router.post("/", createInvestigation);
 router.post("/:investigationId/evidence", createEvidence);
 router.get("/", getInvestigations);
+router.get("/alerts/:alertId/context", getAlertContext);
 router.get("/:investigationId", getInvestigationDetails);
 
 export default router;

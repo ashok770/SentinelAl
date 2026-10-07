@@ -3,6 +3,7 @@ import {
   getInvestigationDetails as getInvestigationDetailsService,
   getInvestigations as getInvestigationsService,
 } from "../services/investigation.service.js";
+import InvestigationIntelligenceService from "../services/InvestigationIntelligenceService.js";
 
 export const createInvestigation = async (req, res) => {
   try {
@@ -55,5 +56,23 @@ export const getInvestigationDetails = async (req, res) => {
       success: false,
       message: error.message,
     });
+  }
+};
+
+export const getAlertContext = async (req, res) => {
+  try {
+    const { alertId } = req.params;
+    const context = await InvestigationIntelligenceService.getAlertContext(alertId);
+
+    return res.status(200).json({
+      status: "success",
+      data: context
+    });
+  } catch (error) {
+    if (error.message === "Alert not found" || error.message === "User not found") {
+      return res.status(404).json({ error: error.message });
+    }
+    console.error("Error fetching alert context:", error);
+    return res.status(500).json({ error: "Failed to fetch alert context" });
   }
 };

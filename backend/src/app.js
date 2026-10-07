@@ -7,6 +7,11 @@ import dotenv from "dotenv";
 
 import authRoutes from "./routes/auth.routes.js";
 import investigationRoutes from "./routes/investigation.routes.js";
+import activityRoutes from "./routes/activity.routes.js";
+import analysisRoutes from "./routes/analysis.routes.js";
+import riskRoutes from "./routes/risk.routes.js";
+import alertRoutes from "./routes/alert.routes.js";
+import dashboardRoutes from "./routes/dashboard.routes.js";
 
 dotenv.config();
 
@@ -25,6 +30,11 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/investigations", investigationRoutes);
+app.use("/api/v1/activity", activityRoutes);
+app.use("/api/v1/analysis", analysisRoutes);
+app.use("/api/v1/risk", riskRoutes);
+app.use("/api/v1/alerts", alertRoutes);
+app.use("/api/v1/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
   res.json({

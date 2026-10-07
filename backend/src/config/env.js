@@ -1,5 +1,12 @@
+import path from "path";
+import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load .env from backend directory as well as current working directory
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 dotenv.config();
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -18,7 +25,7 @@ if (isProduction && !process.env.JWT_SECRET) {
 
 export const env = {
   PORT: process.env.PORT || 5000,
-  MONGODB_URI: process.env.MONGODB_URI,
+  MONGODB_URI: process.env.MONGODB_URI || "mongodb://localhost:27017/sentinelai",
   NODE_ENV: process.env.NODE_ENV || "development",
 
   // Authentication infrastructure configuration.

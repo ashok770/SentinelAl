@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "test": "node test_signup.js && node test_login.js"
+    "test": "node test_signup.js && node test_login.js && node test_activity_api.js && node test_analysis_api.js && node test_risk_api.js && node test_alert_api.js && node test_investigation_intelligence_api.js && node test_dashboard_api.js",
+    "seed:demo": "node scripts/seedDemoData.js"
   },
   "keywords": [],
   "author": "",
